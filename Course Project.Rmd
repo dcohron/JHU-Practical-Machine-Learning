@@ -118,7 +118,7 @@ dim(validating)
 
 ## Model Creation and Results
 
-Run train function on the training dataset.  Then use that model to make predictions on the validation set.  This takes a good bit to run as the data set is so large.
+Run train function on the training dataset using random forest.  I was going to build a stacked model but found the random forest to be so accurate that I did not get any appreciable increase in accuracy using the other models.  So then use that model to make predictions on the validation set.  This takes a good bit of time to run as the data set is so large.
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE}
 #  set seed for reproduceability of results
@@ -132,12 +132,12 @@ predRF <- predict(modFitRF, validating)
 
 ```
 
-
-Lets look at the summary confusion matrix to see how the model faired in prediction on the validation set:
+##  Cross validation and out-of-sample error estimation
+Lets look at the summary confusion matrix to see how the model faired in prediction on the validation dataset:
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE}
 # look at accuracy of results
-confusionMatrix(predRF, validating$classe)$overall
+confusionMatrix(predRF, validating$classe)
 
 ```
 
